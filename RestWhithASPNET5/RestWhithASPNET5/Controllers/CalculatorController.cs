@@ -31,38 +31,59 @@ namespace RestWhithASPNET5.Controllers
         }
 
         [HttpGet("sub/{firstNumber}/{secondNumber}")]
-        public IActionResult SubGet(string firstNumber, string secondNumber)
+        public IActionResult Sub(string firstNumber, string secondNumber)
         {
             if (IsNumeric(secondNumber) && IsNumeric(firstNumber))
             {
-                var sum = CovertToNumber(firstNumber) - CovertToNumber(secondNumber);
-                return Ok(sum.ToString());
+                var sub = CovertToNumber(firstNumber) - CovertToNumber(secondNumber);
+                return Ok(sub.ToString());
             }
             return BadRequest("invalid Input!!!");
         }
 
         [HttpGet("mult/{firstNumber}/{secondNumber}")]
-        public IActionResult MultGet(string firstNumber, string secondNumber)
+        public IActionResult Mult(string firstNumber, string secondNumber)
         {
             if (IsNumeric(secondNumber) && IsNumeric(firstNumber))
             {
-                var sum = CovertToNumber(firstNumber) * CovertToNumber(secondNumber);
-                return Ok(sum.ToString());
+                var mult = CovertToNumber(firstNumber) * CovertToNumber(secondNumber);
+                return Ok(mult.ToString());
             }
             return BadRequest("invalid Input!!!");
         }
 
         [HttpGet("div/{firstNumber}/{secondNumber}")]
-        public IActionResult DivGet(string firstNumber, string secondNumber)
+        public IActionResult Div(string firstNumber, string secondNumber)
         {
             if (IsNumeric(secondNumber) && IsNumeric(firstNumber))
             {
-                var sum = CovertToNumber(firstNumber) / CovertToNumber(secondNumber);
-                return Ok(sum.ToString());
+                var div = CovertToNumber(firstNumber) / CovertToNumber(secondNumber);
+                return Ok(div.ToString());
             }
             return BadRequest("invalid Input!!!");
         }
 
+        [HttpGet("mean/{firstNumber}/{secondNumber}")]
+        public IActionResult Mean(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(secondNumber) && IsNumeric(firstNumber))
+            {
+                var mean = (CovertToNumber(firstNumber) + CovertToNumber(secondNumber))/2;
+                return Ok(mean.ToString());
+            }
+            return BadRequest("invalid Input!!!");
+        }
+
+        [HttpGet("sqrt/{firstNumber}")]
+        public IActionResult SquareRoot(string firstNumber)
+        {
+            if (IsNumeric(firstNumber))
+            {
+                var squareRoot = Math.Sqrt((double)CovertToNumber(firstNumber));
+                return Ok(squareRoot.ToString());
+            }
+            return BadRequest("invalid Input!!!");
+        }
 
         private bool IsNumeric(string strNumber)
         {
